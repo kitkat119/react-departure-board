@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  state = {data: 'none'}
-  ary = ['I am ary']
+  state = {data: 'not yet'}
+  api_response = ""
 
   componentDidMount() {
 
     fetch('http://localhost:3001/')
-    .then(function(response){
-      console.log('Here is the response:')
-      console.log(response)
+    .then((resp) => resp.json())
+    .then(function(data){
+      console.log('Here is the response:');
+      console.log(data);
     })
   }
 
