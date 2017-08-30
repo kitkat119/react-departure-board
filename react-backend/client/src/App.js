@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  state = {data: []}
+  state = {data: 'none'}
+  ary = ['I am ary']
 
   componentDidMount() {
-    fetch('/')
-      .then(res => res.json())
-      .then(data => this.setState({data}));
-  };
+
+    fetch('http://localhost:3001/')
+    .then(function(response){
+      console.log('Here is the response:')
+      console.log(response)
+    })
+  }
 
   render() {
     return (
       <div className="App">
         <h1>Test Data</h1>
-        {this.state.data}
+        <div>{this.state.data.toString()}</div>
       </div>
     );
-  }
+  };
 }
+
 
 export default App;
