@@ -3,16 +3,19 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  state = {data: 'not yet'}
-  api_response = ""
+  apiData = { data: 'not yet' }
 
   componentDidMount() {
-
+    var component = this
     fetch('http://localhost:3001/')
     .then((resp) => resp.json())
     .then(function(data){
-      console.log('Here is the response:');
-      console.log(data);
+      console.log(data)
+      console.log(data.greeting)
+      component.apiData.data = data.greeting.toString();
+      component.setState({
+        apiData: data
+      })
     })
   }
 
@@ -20,11 +23,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Test Data</h1>
-        <div>{this.state.data.toString()}</div>
+        <div>{ this.apiData.data }</div>
       </div>
     );
   };
 }
-
 
 export default App;
