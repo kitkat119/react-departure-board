@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+import { TrainList } from './components/trainList';
 
 class App extends Component {
-  apiData = { data: {
-      all: [{
-        aimed_departure_time: '',
-        destination_name: 'Loading...',
-        platform: '',
-        expected_departure_time: ''
-      }]
-    }
+  constructor() {
+    super();
+    this.state = {
+      apiData: {}
   }
+}
 
   componentDidMount() {
     var component = this
@@ -26,26 +24,29 @@ class App extends Component {
       component.setState({
         apiData: data
       })
+
     })
   }
 
   render() {
+
     return (
       <div className="App">
-        <h1>London Cannon Street</h1>
+        <TrainList info={this.state.apiData}/>
+        {/* <h1>London Cannon Street</h1>
         <h2>Departures:</h2>
         <h3>Time - Destination - Plat - Expected</h3>
         { console.log(this.apiData.data.all) }
         <ul>
           {this.apiData.data.all.map(train =>
             <li key={train.train_uid}>
-              {train.aimed_departure_time} 
+              {train.aimed_departure_time}
               {train.destination_name}
               {train.platform}
               {train.expected_departure_time}
             </li>
           )}
-        </ul>
+        </ul> */}
       </div>
     );
   };
