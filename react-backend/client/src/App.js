@@ -3,8 +3,15 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  apiData = { data: 'Loading...' }
-  trains = []
+  apiData = { data: {
+      all: [{
+        aimed_departure_time: '',
+        destination_name: 'Loading...',
+        platform: '',
+        expected_departure_time: ''
+      }]
+    }
+  }
 
   componentDidMount() {
     var component = this
@@ -29,14 +36,16 @@ class App extends Component {
         <h2>Departures:</h2>
         <h3>Time - Destination - Plat - Expected</h3>
         { console.log(this.apiData.data.all) }
-        { console.log(this.apiData.data.all ? this.apiData.data.all[0] : 'none') }
-        <div>
-        { this.apiData.data.all ? this.apiData.data.all[0].aimed_departure_time : this.apiData.data.toString() } - 
-        { this.apiData.data.all ? this.apiData.data.all[0].destination_name : this.apiData.data.toString() } -
-        { this.apiData.data.all ? this.apiData.data.all[0].platform : this.apiData.data.toString() } -
-        { this.apiData.data.all ? this.apiData.data.all[0].expected_departure_time : this.apiData.data.toString() }
-
-        </div>
+        <ul>
+          {this.apiData.data.all.map(train =>
+            <li key={train.train_uid}>
+              {train.aimed_departure_time} 
+              {train.destination_name}
+              {train.platform}
+              {train.expected_departure_time}
+            </li>
+          )}
+        </ul>
       </div>
     );
   };
