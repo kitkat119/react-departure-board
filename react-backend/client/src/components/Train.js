@@ -1,30 +1,11 @@
 import React from 'react';
 
-export class Train extends React.Component {
+class Train extends React.Component {
   render() {
     return(
-      <div> {this.props.train.date} </div>
+      <div> {this.props.train.aimed_departure_time} {this.props.train.destination_name} {this.props.train.platform} {this.props.train.expected_departure_time}</div>
     )
   }
 }
-// } (train) => {
-//   return(
-//     <div> {train.date} </div>
-//   )
-// }
 
-// export default Train;
-
-// export class Train extends React.Component {
-// render() {
-//   return (
-//     <div key={train.train_uid}>
-//       {train.aimed_departure_time}
-//       {train.destination_name}
-//       {train.platform}
-//       {train.expected_departure_time}
-//     </div>
-//
-//   )
-// }
-// }
+export default Train;

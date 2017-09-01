@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import ReactDOM from 'react-dom';
 import './App.css';
-import { TrainList } from './components/trainList';
+import TrainList from './components/trainList';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiData: {}
+      data: {
+      all: [{
+        aimed_departure_time: '',
+        destination_name: 'Loading...',
+        platform: '',
+        expected_departure_time: ''
+      }]
+    }
   }
-  this.componentDidMount = this.componentDidMount.bind(this);
-}
+};
 
   componentDidMount() {
-    var localhost_url = 'http://localhost:3001/'
-    var cannon_street_url = 'http://transportapi.com/v3/uk/train/station/CST/live.json?type=departure&app_id=88e9b09b&app_key=b67f9c0a642d1931247492f109f1d561'
-
+    var component = this;
+    var cannon_street_url = 'https://railwoodpecker.herokuapp.com/'
     fetch(cannon_street_url)
     .then((resp) => resp.json())
     .then(function(data){
-      console.log(data)
-      // this.apiData.data = data.departures;
-      this.setState({
-        apiData: data
+      component.setState({
+        data: data.departures
       });
 
     })
@@ -32,25 +35,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        <TrainList data={this.state.apiData} />
-        {/* <h1>London Cannon Street</h1>
+        <h1>London Cannon Street</h1>
         <h2>Departures:</h2>
         <h3>Time - Destination - Plat - Expected</h3>
-        { console.log(this.apiData.data.all) }
-        <ul>
-          {this.apiData.data.all.map(train =>
-            <li key={train.train_uid}>
-              {train.aimed_departure_time}
-              {train.destination_name}
-              {train.platform}
-              {train.expected_departure_time}
-            </li>
-          )}
-        </ul> */}
+         <TrainList data={this.state.data} />
       </div>
     );
   };
 }
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;
