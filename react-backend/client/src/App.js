@@ -21,14 +21,16 @@ class App extends Component {
   componentDidMount() {
     var component = this;
     var cannon_street_url = 'https://railwoodpecker.herokuapp.com/'
-    fetch(cannon_street_url)
-    .then((resp) => resp.json())
-    .then(function(data){
-      component.setState({
-        data: data.departures
-      });
 
-    })
+    setInterval(function() {
+      fetch(cannon_street_url)
+      .then((resp) => resp.json())
+      .then(function(data){
+        component.setState({
+          data: data.departures
+        });
+      })
+    }, 10000);
   }
 
   render() {
