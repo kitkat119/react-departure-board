@@ -38,6 +38,7 @@ class App extends Component {
         <h1>London Cannon Street</h1>
         <h2>Departures:</h2>
         <h3>Time - Destination - Plat - Expected</h3>
+
          <TrainList data={this.state.data} />
       </div>
     );
