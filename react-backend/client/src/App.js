@@ -4,15 +4,15 @@ import './App.css';
 import { TrainList } from './components/trainList';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       apiData: {}
   }
+  this.componentDidMount = this.componentDidMount.bind(this);
 }
 
   componentDidMount() {
-    var component = this
     var localhost_url = 'http://localhost:3001/'
     var cannon_street_url = 'http://transportapi.com/v3/uk/train/station/CST/live.json?type=departure&app_id=88e9b09b&app_key=b67f9c0a642d1931247492f109f1d561'
 
@@ -20,10 +20,10 @@ class App extends Component {
     .then((resp) => resp.json())
     .then(function(data){
       console.log(data)
-      component.apiData.data = data.departures;
-      component.setState({
+      // this.apiData.data = data.departures;
+      this.setState({
         apiData: data
-      })
+      });
 
     })
   }
@@ -32,7 +32,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <TrainList info={this.state.apiData}/>
+        <TrainList data={this.state.apiData} />
         {/* <h1>London Cannon Street</h1>
         <h2>Departures:</h2>
         <h3>Time - Destination - Plat - Expected</h3>
@@ -51,5 +51,6 @@ class App extends Component {
     );
   };
 }
+ReactDOM.render(<App />, document.getElementById('app'));
 
 export default App;
