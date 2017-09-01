@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import TrainList from './components/trainList';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -30,17 +31,13 @@ class App extends Component {
           data: data.departures
         });
       })
-    }, 10000);
+    }, 1000);
   }
 
   render() {
 
     return (
       <div className="App">
-        <h1>London Cannon Street</h1>
-        <h2>Departures:</h2>
-        <h3>Time - Destination - Plat - Expected</h3>
-
          <TrainList data={this.state.data} />
       </div>
     );
