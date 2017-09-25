@@ -2,7 +2,7 @@
 
 A live departure board built with React JS. A web app built in 3,5 days as a team of 4, following XP values and Agile methodology.
 
-We're on heroku: http://live-departures.herokuapp.com
+We're on heroku: http://live-departures.herokuapp.com (please note, the app can take up to 3 minutes to start on first attempt. That's due to the nature of the free Heroku account it is currently running on.
 
 ![Board Image](board.png)
 
